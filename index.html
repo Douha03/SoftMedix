@@ -73,19 +73,16 @@ header {
 
 /* Bouton principal */
 #section-btn {
-  padding: 1.1rem 2.5rem;
+  padding: 0.9rem 1.8rem;
   background: var(--accent);
   color: white;
   border: none;
-  border-radius: 16px;
-  font-weight: 700;
-  font-size: 1.15rem;
+  border-radius: 14px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   z-index: 1002;
-  min-width: 220px;
-  letter-spacing: 0.3px;
 }
 #section-btn:hover { background: var(--primary); transform: translateY(-2px); }
 
@@ -247,7 +244,7 @@ header {
  padding: 9rem 4rem;
  text-align: center;
  color: white;
- box-shadow: 0 20px 60px rgba(227, 225, 225, 0.25);
+ box-shadow: 0 20px 60px rgba(0,0,0,0.25);
  margin-bottom: 4rem;
  position: relative;
  overflow: hidden;
@@ -432,12 +429,12 @@ header {
      <div class="dropdown-item">
       3. Capteurs biomédicaux
       <div class="sub-menu">
-       <div class="sub-item" onclick="showSection('sensors', 'sensors-force')"> Capteur Force / Pression</div>
-       <div class="sub-item" onclick="showSection('sensors', 'sensors-tactile')"> Capteur Tactile (Palpation)</div>
-       <div class="sub-item" onclick="showSection('sensors', 'sensors-temperature')">Capteur Température</div>
-       <div class="sub-item" onclick="showSection('sensors', 'sensors-impedance')">Capteur Impédance</div>
-       <div class="sub-item" onclick="showSection('sensors', 'sensors-localisation')">Capteur Localisation</div>
-       <div class="sub-item" onclick="showSection('sensors', 'sensors-electrophysiologie')">Capteur Électrophysiologie</div>
+       <div class="sub-item" onclick="showSection('sensors', 'sensors-force')">Force / Pression</div>
+       <div class="sub-item" onclick="showSection('sensors', 'sensors-tactile')">Tactile (Palpation)</div>
+       <div class="sub-item" onclick="showSection('sensors', 'sensors-temperature')">Température</div>
+       <div class="sub-item" onclick="showSection('sensors', 'sensors-impedance')">Impédance</div>
+       <div class="sub-item" onclick="showSection('sensors', 'sensors-localisation')">Localisation</div>
+       <div class="sub-item" onclick="showSection('sensors', 'sensors-electrophysiologie')">Électrophysiologie</div>
        <div class="sub-item" onclick="showSection('sensors', 'sensors-mecanique')">Capteur mécanique</div>
       </div>
      </div>
@@ -484,7 +481,7 @@ header {
 
   <!-- BARRE DE RECHERCHE -->
   <div class="search-container">
-   <input type="text" id="search-input" placeholder="Rechercher un terme biomédical>
+   <input type="text" id="search-input" placeholder="Rechercher un terme biomédical... (ex: PDMS, ablation, capteur force)">
   </div>
 
   <!-- PAGE D'ACCUEIL avec image de robot médical -->
@@ -770,6 +767,7 @@ header {
  </script>
 </body>
 </html>
+
 
 
 
