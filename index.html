@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoftMedix — Robots Médicaux Souples & Capteurs Intégrés</title>
     <meta name="description" content="Recherche avancée sur les robots médicaux souples et l'intégration de capteurs biomimétiques pour la chirurgie de demain.">
+    <meta name="keywords" content="robots médicaux souples, capteurs intégrés, robotique médicale, chirurgie minimalement invasive">
+    <title>SoftMedix — Robots Médicaux Souples & Capteurs Intégrés</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Clash+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -20,6 +21,7 @@
             --primary-light: #0ea5e9;
             --gray: #64748b;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --search-bg: rgba(2,132,199,0.1);
         }
         [data-theme="dark"] {
             --bg: #0f172a;
@@ -27,6 +29,7 @@
             --card: #1e293b;
             --border: rgba(255, 255, 255, 0.1);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --search-bg: rgba(255,255,255,0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +43,7 @@
         header {
             position: fixed;
             top: 0; left: 0; right: 0;
-            padding: 1.5rem 5%;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -48,12 +51,42 @@
             backdrop-filter: blur(12px);
             background: var(--bg);
             border-bottom: 1px solid var(--border);
+            gap: 1rem;
         }
         .logo {
             font-family: 'Clash Display', sans-serif;
             font-size: 2.2rem;
             font-weight: 700;
             color: var(--primary);
+            flex-shrink: 0;
+        }
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.8rem 1.2rem 0.8rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: var(--search-bg);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2,132,199,0.1);
+        }
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1.1rem;
         }
         .theme-toggle {
             background: transparent;
@@ -64,28 +97,31 @@
             font-size: 1.3rem;
             cursor: pointer;
             transition: all 0.4s;
+            flex-shrink: 0;
         }
         .theme-toggle:hover { background: var(--primary); color: white; }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 120px 2rem 4rem; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 2rem 4rem; }
 
         h1, h2, h3 { font-family: 'Clash Display', sans-serif; font-weight: 600; }
 
         .hero {
             text-align: center;
-            padding: 100px 20px 120px;
+            padding: 80px 20px 100px;
+            border-bottom: 1px solid var(--border);
         }
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: 4rem;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
         }
         .hero p {
             font-size: 1.3rem;
             max-width: 900px;
-            margin: 2rem auto;
+            margin: 0 auto;
             color: var(--gray);
         }
 
@@ -93,6 +129,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 2rem;
+            margin-top: 60px;
         }
         .section-card {
             background: var(--card);
@@ -146,12 +183,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .sub-btn:hover {
+        .sub-btn:hover, .sub-btn.active {
             background: var(--primary);
             color: white;
             transform: translateX(8px);
         }
 
+        /* Pages détail améliorées avec navigation intra-section */
         .detail-page { display: none; min-height: 100vh; padding-top: 100px; }
         .detail-page.active { display: block; }
 
@@ -203,125 +241,203 @@
             border-radius: 16px;
         }
 
+        /* Navigation intra-section */
+        .section-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+        }
+        .section-nav button {
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .section-nav button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .section-nav button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .fade-in { opacity: 0; transform: translateY(40px); }
         .fade-in.visible { opacity: 1; transform: translateY(0); transition: all 0.9s ease; }
+
+        /* Footer pro */
+        footer {
+            background: var(--card);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+        footer p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 1rem 2%; }
+            .search-bar { order: 3; margin-top: 1rem; width: 100%; }
+            .logo { font-size: 1.8rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .detail-content { padding: 40px 20px; }
+            .back-btn { left: 20px; top: 80px; }
+            .section-nav { flex-direction: column; gap: 1rem; }
+        }
+
+        /* Améliorations SEO et accessibilité */
+        [role="button"] { cursor: pointer; }
+        img { alt: ""; } /* Ajouter alt réels plus tard */
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">SoftMedix</div>
+    <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Rechercher une section ou sous-section...">
+    </div>
     <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
 </header>
 
-<!-- PAGE D'ACCUEIL -->
+<!-- PAGE D'ACCUEIL AMÉLIORÉE -->
 <div class="container" id="home">
     <section class="hero fade-in">
         <h1>Robots Médicaux Souples<br>& Capteurs Intégrés</h1>
-        <p>Exploration des technologies de pointe pour une chirurgie plus sûre, précise et minimalement invasive grâce à la robotique souple et aux capteurs biomimétiques intégrés.</p>
+        <p>Le contexte général des robots médicaux souples et la nécessité d’y intégrer des capteurs pour améliorer la perception, la sécurité et la précision.</p>
     </section>
 
-    <div class="sections-grid">
+    <div class="sections-grid" id="sectionsGrid">
         <!-- 1. Fonctions et types de capteurs -->
-        <div class="section-card">
+        <div class="section-card" data-section="s1">
             <div class="section-header" onclick="toggleSection(this)">Fonctions et types de capteurs intégrés</div>
             <div class="subsections">
-                <button class="sub-btn" onclick="showDetail('s1-1')">Capteurs de force et de pression</button>
-                <button class="sub-btn" onclick="showDetail('s1-2')">Capteurs tactiles</button>
-                <button class="sub-btn" onclick="showDetail('s1-3')">Capteurs de température</button>
-                <button class="sub-btn" onclick="showDetail('s1-4')">Capteurs de contrainte et de courbure</button>
-                <button class="sub-btn" onclick="showDetail('s1-5')">Capteurs d’impédance électrique</button>
-                <button class="sub-btn" onclick="showDetail('s1-6')">Capteurs de localisation et de suivi</button>
+                <button class="sub-btn" data-id="s1-1" onclick="showDetail('s1-1')">Capteurs de force et de pression</button>
+                <button class="sub-btn" data-id="s1-2" onclick="showDetail('s1-2')">Capteurs tactiles</button>
+                <button class="sub-btn" data-id="s1-3" onclick="showDetail('s1-3')">Capteurs de température</button>
+                <button class="sub-btn" data-id="s1-4" onclick="showDetail('s1-4')">Capteurs de contrainte et de courbure</button>
+                <button class="sub-btn" data-id="s1-5" onclick="showDetail('s1-5')">Capteurs d’impédance électrique</button>
+                <button class="sub-btn" data-id="s1-6" onclick="showDetail('s1-6')">Capteurs de localisation et de suivi</button>
             </div>
         </div>
 
         <!-- 2. Matériaux -->
-        <div class="section-card">
+        <div class="section-card" data-section="s2">
             <div class="section-header" onclick="toggleSection(this)">Matériaux utilisables pour les capteurs souples</div>
             <div class="subsections">
-                <button class="sub-btn" onclick="showDetail('s2-1')">Polymères élastomères (PDMS, Ecoflex…)</button>
-                <button class="sub-btn" onclick="showDetail('s2-2')">Électrodes extensibles</button>
-                <button class="sub-btn" onclick="showDetail('s2-3')">Fibres optiques souples</button>
-                <button class="sub-btn" onclick="showDetail('s2-4')">Hydrogels et matériaux sensibles</button>
+                <button class="sub-btn" data-id="s2-1" onclick="showDetail('s2-1')">Polymères élastomères (PDMS, Ecoflex…)</button>
+                <button class="sub-btn" data-id="s2-2" onclick="showDetail('s2-2')">Électrodes extensibles</button>
+                <button class="sub-btn" data-id="s2-3" onclick="showDetail('s2-3')">Fibres optiques souples</button>
+                <button class="sub-btn" data-id="s2-4" onclick="showDetail('s2-4')">Hydrogels et matériaux sensibles</button>
             </div>
         </div>
 
         <!-- 3. Technologies d’intégration -->
-        <div class="section-card">
+        <div class="section-card" data-section="s3">
             <div class="section-header" onclick="toggleSection(this)">Technologies d’intégration et de fabrication</div>
             <div class="subsections">
-                <button class="sub-btn" onclick="showDetail('s3-1')">Microfabrication inspirée MEMS</button>
-                <button class="sub-btn" onclick="showDetail('s3-2')">Impression 3D de structures souples</button>
-                <button class="sub-btn" onclick="showDetail('s3-3')">Encapsulation et intégration multicouches</button>
-                <button class="sub-btn" onclick="showDetail('s3-4')">Approches fibre optique</button>
-                <button class="sub-btn" onclick="showDetail('s3-5')">Intégration en 3D</button>
+                <button class="sub-btn" data-id="s3-1" onclick="showDetail('s3-1')">Microfabrication inspirée MEMS</button>
+                <button class="sub-btn" data-id="s3-2" onclick="showDetail('s3-2')">Impression 3D de structures souples</button>
+                <button class="sub-btn" data-id="s3-3" onclick="showDetail('s3-3')">Encapsulation et intégration multicouches</button>
+                <button class="sub-btn" data-id="s3-4" onclick="showDetail('s3-4')">Approches fibre optique</button>
+                <button class="sub-btn" data-id="s3-5" onclick="showDetail('s3-5')">Intégration en 3D</button>
             </div>
         </div>
 
         <!-- 4. Défis actuels -->
-        <div class="section-card">
+        <div class="section-card" data-section="s4">
             <div class="section-header" onclick="toggleSection(this)">Défis actuels</div>
             <div class="subsections">
-                <button class="sub-btn" onclick="showDetail('s4-1')">Miniaturisation extrême</button>
-                <button class="sub-btn" onclick="showDetail('s4-2')">Fiabilité dans environnements humides</button>
-                <button class="sub-btn" onclick="showDetail('s4-3')">Compatibilité biomécanique</button>
-                <button class="sub-btn" onclick="showDetail('s4-4')">Durabilité à long terme</button>
+                <button class="sub-btn" data-id="s4-1" onclick="showDetail('s4-1')">Miniaturisation extrême</button>
+                <button class="sub-btn" data-id="s4-2" onclick="showDetail('s4-2')">Fiabilité dans environnements humides</button>
+                <button class="sub-btn" data-id="s4-3" onclick="showDetail('s4-3')">Compatibilité biomécanique</button>
+                <button class="sub-btn" data-id="s4-4" onclick="showDetail('s4-4')">Durabilité à long terme</button>
             </div>
         </div>
 
         <!-- 5. Perspectives futures -->
-        <div class="section-card">
+        <div class="section-card" data-section="s5">
             <div class="section-header" onclick="toggleSection(this)">Perspectives et directions futures</div>
             <div class="subsections">
-                <button class="sub-btn" onclick="showDetail('s5-1')">Capteurs plus petits et multi-modaux</button>
-                <button class="sub-btn" onclick="showDetail('s5-2')">Intégration en 3D totale</button>
-                <button class="sub-btn" onclick="showDetail('s5-3')">Retour d’information en temps réel</button>
-                <button class="sub-btn" onclick="showDetail('s5-4')">Matériaux plus biocompatibles</button>
+                <button class="sub-btn" data-id="s5-1" onclick="showDetail('s5-1')">Capteurs plus petits et multi-modaux</button>
+                <button class="sub-btn" data-id="s5-2" onclick="showDetail('s5-2')">Intégration en 3D totale</button>
+                <button class="sub-btn" data-id="s5-3" onclick="showDetail('s5-3')">Retour d’information en temps réel</button>
+                <button class="sub-btn" data-id="s5-4" onclick="showDetail('s5-4')">Matériaux plus biocompatibles</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- TOUTES LES PAGES DÉTAILLÉES (24) -->
-<div id="s1-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Capteurs de force et de pression</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Capteurs+de+Force" alt="" class="detail-img"><div class="text-zone">Les capteurs de force et de pression permettent au robot de détecter en temps réel les interactions avec les tissus biologiques...</div></div></div>
+<!-- TOUTES LES PAGES DÉTAILLÉES (avec navigation intra-section) -->
+<div id="s1-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Capteurs de force et de pression</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Capteurs+de+Force" alt="Capteurs de force et de pression" class="detail-img"><div class="text-zone">Les capteurs de force et de pression permettent au robot de détecter en temps réel les interactions avec les tissus biologiques...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's1-1')">Précédent</button><button onclick="navigateInSection('next', 's1-1')">Suivant</button></div></div></div>
 
-<div id="s1-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Capteurs tactiles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Capteurs+Tactiles" alt="" class="detail-img"><div class="text-zone">Reproduire le sens du toucher humain avec une matrice de capteurs souples...</div></div></div>
+<div id="s1-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Capteurs tactiles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Capteurs+Tactiles" alt="Capteurs tactiles" class="detail-img"><div class="text-zone">Reproduire le sens du toucher humain avec une matrice de capteurs souples...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's1-2')">Précédent</button><button onclick="navigateInSection('next', 's1-2')">Suivant</button></div></div></div>
 
-<div id="s1-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Capteurs de température</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Capteurs+Température" alt="" class="detail-img"><div class="text-zone">Détection des variations thermiques locales pour éviter les lésions...</div></div></div>
+<div id="s1-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Capteurs de température</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Capteurs+Température" alt="Capteurs de température" class="detail-img"><div class="text-zone">Détection des variations thermiques locales pour éviter les lésions...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's1-3')">Précédent</button><button onclick="navigateInSection('next', 's1-3')">Suivant</button></div></div></div>
 
-<div id="s1-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Capteurs de contrainte et de courbure</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Contrainte+et+Courbure" alt="" class="detail-img"><div class="text-zone">Mesure précise de la déformation du robot dans des espaces confinés...</div></div></div>
+<div id="s1-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Capteurs de contrainte et de courbure</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Contrainte+et+Courbure" alt="Capteurs de contrainte et de courbure" class="detail-img"><div class="text-zone">Mesure précise de la déformation du robot dans des espaces confinés...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's1-4')">Précédent</button><button onclick="navigateInSection('next', 's1-4')">Suivant</button></div></div></div>
 
-<div id="s1-5" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Capteurs d’impédance électrique</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Impédance+Électrique" alt="" class="detail-img"><div class="text-zone">Identification des types de tissus par leurs propriétés électriques...</div></div></div>
+<div id="s1-5" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Capteurs d’impédance électrique</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Impédance+Électrique" alt="Capteurs d’impédance électrique" class="detail-img"><div class="text-zone">Identification des types de tissus par leurs propriétés électriques...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's1-5')">Précédent</button><button onclick="navigateInSection('next', 's1-5')">Suivant</button></div></div></div>
 
-<div id="s1-6" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Capteurs de localisation et de suivi</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Localisation" alt="" class="detail-img"><div class="text-zone">Suivi en temps réel de la position du robot à l’intérieur du corps...</div></div></div>
+<div id="s1-6" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Capteurs de localisation et de suivi</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Localisation" alt="Capteurs de localisation et de suivi" class="detail-img"><div class="text-zone">Suivi en temps réel de la position du robot à l’intérieur du corps...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's1-6')">Précédent</button><button onclick="navigateInSection('next', 's1-6')">Suivant</button></div></div></div>
 
 <!-- Section 2 -->
-<div id="s2-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Polymères élastomères (PDMS, Ecoflex…)</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=PDMS+Ecoflex" alt="" class="detail-img"><div class="text-zone">Matériaux de base pour la fabrication de structures souples et biocompatibles...</div></div></div>
+<div id="s2-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Polymères élastomères (PDMS, Ecoflex…)</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=PDMS+Ecoflex" alt="Polymères élastomères" class="detail-img"><div class="text-zone">Matériaux de base pour la fabrication de structures souples et biocompatibles...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's2-1')">Précédent</button><button onclick="navigateInSection('next', 's2-1')">Suivant</button></div></div></div>
 
-<div id="s2-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Électrodes extensibles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Électrodes+Extensibles" alt="" class="detail-img"><div class="text-zone">Conducteurs qui conservent leurs propriétés sous forte déformation...</div></div></div>
+<div id="s2-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Électrodes extensibles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Électrodes+Extensibles" alt="Électrodes extensibles" class="detail-img"><div class="text-zone">Conducteurs qui conservent leurs propriétés sous forte déformation...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's2-2')">Précédent</button><button onclick="navigateInSection('next', 's2-2')">Suivant</button></div></div></div>
 
-<div id="s2-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Fibres optiques souples</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Fibres+Optiques" alt="" class="detail-img"><div class="text-zone">Transmission de la lumière et détection de déformation par variation de signal optique...</div></div></div>
+<div id="s2-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Fibres optiques souples</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Fibres+Optiques" alt="Fibres optiques souples" class="detail-img"><div class="text-zone">Transmission de la lumière et détection de déformation par variation de signal optique...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's2-3')">Précédent</button><button onclick="navigateInSection('next', 's2-3')">Suivant</button></div></div></div>
 
-<div id="s2-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Hydrogels et matériaux sensibles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Hydrogels" alt="" class="detail-img"><div class="text-zone">Matériaux gonflant ou changeant de propriétés en réponse à des stimuli...</div></div></div>
+<div id="s2-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Hydrogels et matériaux sensibles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Hydrogels" alt="Hydrogels et matériaux sensibles" class="detail-img"><div class="text-zone">Matériaux gonflant ou changeant de propriétés en réponse à des stimuli...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's2-4')">Précédent</button><button onclick="navigateInSection('next', 's2-4')">Suivant</button></div></div></div>
 
-<!-- Section 3 à 5 : même structure, je les ai toutes mises pour toi -->
-<div id="s3-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Microfabrication inspirée MEMS</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=MEMS+Souples" alt="" class="detail-img"><div class="text-zone">Adaptation des techniques de microélectronique aux matériaux souples...</div></div></div>
-<div id="s3-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Impression 3D de structures souples</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Impression+3D+Souple" alt="" class="detail-img"><div class="text-zone">Fabrication rapide de prototypes et structures complexes...</div></div></div>
-<div id="s3-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Encapsulation et intégration multicouches</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Encapsulation" alt="" class="detail-img"><div class="text-zone">Protection des composants électroniques dans un environnement biologique...</div></div></div>
-<div id="s3-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Approches fibre optique</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Fibre+Optique" alt="" class="detail-img"><div class="text-zone">Capteurs entièrement optiques sans électronique embarquée...</div></div></div>
-<div id="s3-5" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Intégration en 3D</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Intégration+3D" alt="" class="detail-img"><div class="text-zone">Capteurs directement imprimés dans la structure du robot...</div></div></div>
+<!-- Sections 3-5 similaires -->
+<div id="s3-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Microfabrication inspirée MEMS</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=MEMS+Souples" alt="Microfabrication inspirée MEMS" class="detail-img"><div class="text-zone">Adaptation des techniques de microélectronique aux matériaux souples...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's3-1')">Précédent</button><button onclick="navigateInSection('next', 's3-1')">Suivant</button></div></div></div>
+<div id="s3-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Impression 3D de structures souples</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Impression+3D+Souple" alt="Impression 3D de structures souples" class="detail-img"><div class="text-zone">Fabrication rapide de prototypes et structures complexes...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's3-2')">Précédent</button><button onclick="navigateInSection('next', 's3-2')">Suivant</button></div></div></div>
+<div id="s3-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Encapsulation et intégration multicouches</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Encapsulation" alt="Encapsulation et intégration multicouches" class="detail-img"><div class="text-zone">Protection des composants électroniques dans un environnement biologique...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's3-3')">Précédent</button><button onclick="navigateInSection('next', 's3-3')">Suivant</button></div></div></div>
+<div id="s3-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Approches fibre optique</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Fibre+Optique" alt="Approches fibre optique" class="detail-img"><div class="text-zone">Capteurs entièrement optiques sans électronique embarquée...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's3-4')">Précédent</button><button onclick="navigateInSection('next', 's3-4')">Suivant</button></div></div></div>
+<div id="s3-5" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Intégration en 3D</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Intégration+3D" alt="Intégration en 3D" class="detail-img"><div class="text-zone">Capteurs directement imprimés dans la structure du robot...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's3-5')">Précédent</button><button onclick="navigateInSection('next', 's3-5')">Suivant</button></div></div></div>
 
-<div id="s4-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Miniaturisation extrême</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Miniaturisation" alt="" class="detail-img"><div class="text-zone">Atteindre des dimensions sub-millimétriques tout en gardant la sensibilité...</div></div></div>
-<div id="s4-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Fiabilité dans environnements humides</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Environnement+Humide" alt="" class="detail-img"><div class="text-zone">Résistance à l’eau, au sang et aux fluides corporels...</div></div></div>
-<div id="s4-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Compatibilité biomécanique</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Biomécanique" alt="" class="detail-img"><div class="text-zone">Module élastique proche de celui des tissus vivants...</div></div></div>
-<div id="s4-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Durabilité à long terme</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Durabilité" alt="" class="detail-img"><div class="text-zone">Résistance aux cycles répétés de déformation...</div></div></div>
+<div id="s4-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Miniaturisation extrême</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Miniaturisation" alt="Miniaturisation extrême" class="detail-img"><div class="text-zone">Atteindre des dimensions sub-millimétriques tout en gardant la sensibilité...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's4-1')">Précédent</button><button onclick="navigateInSection('next', 's4-1')">Suivant</button></div></div></div>
+<div id="s4-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Fiabilité dans environnements humides</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Environnement+Humide" alt="Fiabilité dans environnements humides" class="detail-img"><div class="text-zone">Résistance à l’eau, au sang et aux fluides corporels...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's4-2')">Précédent</button><button onclick="navigateInSection('next', 's4-2')">Suivant</button></div></div></div>
+<div id="s4-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Compatibilité biomécanique</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Biomécanique" alt="Compatibilité biomécanique" class="detail-img"><div class="text-zone">Module élastique proche de celui des tissus vivants...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's4-3')">Précédent</button><button onclick="navigateInSection('next', 's4-3')">Suivant</button></div></div></div>
+<div id="s4-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Durabilité à long terme</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Durabilité" alt="Durabilité à long terme" class="detail-img"><div class="text-zone">Résistance aux cycles répétés de déformation...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's4-4')">Précédent</button><button onclick="navigateInSection('next', 's4-4')">Suivant</button></div></div></div>
 
-<div id="s5-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Capteurs plus petits et multi-modaux</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Multi-modaux" alt="" class="detail-img"><div class="text-zone">Un seul capteur mesurant force, température, pression simultanément...</div></div></div>
-<div id="s5-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Intégration en 3D totale</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Intégration+Totale" alt="" class="detail-img"><div class="text-zone">Le robot devient lui-même un grand capteur distribué...</div></div></div>
-<div id="s5-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Retour d’information en temps réel</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Temps+Réel" alt="" class="detail-img"><div class="text-zone">Boucles de contrôle haptique ultra-rapides pour le chirurgien...</div></div></div>
-<div id="s5-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour</button><div class="detail-content fade-in"><h1>Matériaux plus biocompatibles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Biocompatibilité" alt="" class="detail-img"><div class="text-zone">Matériaux biodégradables ou bio-inspirés pour des implants permanents...</div></div></div>
+<div id="s5-1" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Capteurs plus petits et multi-modaux</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Multi-modaux" alt="Capteurs plus petits et multi-modaux" class="detail-img"><div class="text-zone">Un seul capteur mesurant force, température, pression simultanément...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's5-1')">Précédent</button><button onclick="navigateInSection('next', 's5-1')">Suivant</button></div></div></div>
+<div id="s5-2" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Intégration en 3D totale</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Intégration+Totale" alt="Intégration en 3D totale" class="detail-img"><div class="text-zone">Le robot devient lui-même un grand capteur distribué...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's5-2')">Précédent</button><button onclick="navigateInSection('next', 's5-2')">Suivant</button></div></div></div>
+<div id="s5-3" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Retour d’information en temps réel</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Temps+Réel" alt="Retour d’information en temps réel" class="detail-img"><div class="text-zone">Boucles de contrôle haptique ultra-rapides pour le chirurgien...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's5-3')">Précédent</button><button onclick="navigateInSection('next', 's5-3')">Suivant</button></div></div></div>
+<div id="s5-4" class="detail-page container"><button class="back-btn" onclick="back()">Retour à l'accueil</button><div class="detail-content fade-in"><h1>Matériaux plus biocompatibles</h1><img src="https://via.placeholder.com/1200x600/0284c7/ffffff?text=Biocompatibilité" alt="Matériaux plus biocompatibles" class="detail-img"><div class="text-zone">Matériaux biodégradables ou bio-inspirés pour des implants permanents...</div><div class="section-nav"><button onclick="navigateInSection('prev', 's5-4')">Précédent</button><button onclick="navigateInSection('next', 's5-4')">Suivant</button></div></div></div>
+
+<footer>
+    <p>© 2023 SoftMedix. Tous droits réservés. | <a href="#">Politique de confidentialité</a> | <a href="#">Contact</a></p>
+</footer>
 
 <script>
+    let currentDetail = null;
+    let sectionSubIds = {
+        s1: ['s1-1', 's1-2', 's1-3', 's1-4', 's1-5', 's1-6'],
+        s2: ['s2-1', 's2-2', 's2-3', 's2-4'],
+        s3: ['s3-1', 's3-2', 's3-3', 's3-4', 's3-5'],
+        s4: ['s4-1', 's4-2', 's4-3', 's4-4'],
+        s5: ['s5-1', 's5-2', 's5-3', 's5-4']
+    };
+
     function toggleSection(el) {
         el.parentElement.classList.toggle('open');
     }
@@ -331,8 +447,14 @@
         document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
         const page = document.getElementById(id);
         page.classList.add('active');
+        currentDetail = id;
+        updateNavButtons(id);
         page.scrollTop = 0;
         setTimeout(() => page.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')), 100);
+
+        // Highlight sub-btn
+        document.querySelectorAll('.sub-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.sub-btn[data-id="${id}"]`).classList.add('active');
     }
 
     function back() {
@@ -341,7 +463,29 @@
             p.querySelectorAll('.fade-in').forEach(el => el.classList.remove('visible'));
         });
         document.getElementById('home').style.display = 'block';
+        currentDetail = null;
+        document.querySelectorAll('.sub-btn').forEach(btn => btn.classList.remove('active'));
         window.scrollTo(0, 0);
+    }
+
+    function navigateInSection(direction, currentId) {
+        const section = currentId.split('-')[0];
+        const subs = sectionSubIds[section];
+        const index = subs.indexOf(currentId);
+        let newIndex = direction === 'next' ? index + 1 : index - 1;
+        if (newIndex >= 0 && newIndex < subs.length) {
+            showDetail(subs[newIndex]);
+        }
+    }
+
+    function updateNavButtons(id) {
+        const section = id.split('-')[0];
+        const subs = sectionSubIds[section];
+        const index = subs.indexOf(id);
+        const prevBtn = document.getElementById(id).querySelector('.section-nav button:first-child');
+        const nextBtn = document.getElementById(id).querySelector('.section-nav button:last-child');
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === subs.length - 1;
     }
 
     // Thème
@@ -353,7 +497,24 @@
         document.querySelector('#themeToggle i').classList.toggle('fa-sun');
     });
 
-    // Animations GSAP au scroll
+    // Recherche
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        document.querySelectorAll('.section-card').forEach(card => {
+            const header = card.querySelector('.section-header').textContent.toLowerCase();
+            const subs = card.querySelectorAll('.sub-btn');
+            let match = header.includes(query);
+            subs.forEach(sub => {
+                const subText = sub.textContent.toLowerCase();
+                sub.style.display = subText.includes(query) ? 'block' : 'none';
+                if (subText.includes(query)) match = true;
+            });
+            card.style.display = match ? 'block' : 'none';
+            if (match) card.classList.add('open');
+        });
+    });
+
+    // Animations GSAP
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('.fade-in').forEach(el => {
         gsap.from(el, {
