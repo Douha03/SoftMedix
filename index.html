@@ -17,11 +17,9 @@
  --border: rgba(59, 130, 246, 0.12);
  }
  * { margin: 0; padding: 0; box-sizing: border-box; }
- 
- /* Arrière-plan magnifique (image du net, pas de gris) */
  body {
  font-family: 'Inter', system-ui, -apple-system, sans-serif;
- background: url('https://images.unsplash.com/photo-1576091160550-2173fba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=90') center/cover fixed no-repeat;
+ background: linear-gradient(180deg, #f0f7ff, #dbeafe);
  color: var(--text);
  line-height: 1.7;
  min-height: 100vh;
@@ -41,7 +39,6 @@
  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
  margin-bottom: 2.5rem;
  position: relative;
- backdrop-filter: blur(10px);
  }
  .header-left {
  display: flex;
@@ -120,20 +117,28 @@
  color: var(--primary);
  }
 
- /* TOUS les sous-menus s'ouvrent à GAUCHE (y compris 4,5,6,7) */
+ /* SOUS-MENU très proche du menu principal */
  .sub-menu {
  position: absolute;
  top: 0;
- left: auto;
- right: 100%;
- margin-right: 4px;
+ left: 100%;
+ margin-left: 4px;
  background: white;
  border-radius: 16px;
  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
  padding: 0.8rem 0;
- min-width: 300px;
+ min-width: 290px;
  display: none;
  z-index: 1001;
+ }
+ /* Pour les 3 premières sections : sous-menu à gauche pour rester accessible */
+ .dropdown-item:nth-child(1) .sub-menu,
+ .dropdown-item:nth-child(2) .sub-menu,
+ .dropdown-item:nth-child(3) .sub-menu {
+ left: auto;
+ right: 100%;
+ margin-right: 4px;
+ margin-left: 0;
  }
  .dropdown-item:hover > .sub-menu { display: block; }
 
@@ -184,10 +189,10 @@
  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
  }
 
- /* ==================== HERO ==================== */
+ /* ==================== HERO avec vraie image de robot ==================== */
  .home-hero {
- background: linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)),
-             url('https://images.unsplash.com/photo-1581092580497-e0e323829a5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90') center/cover no-repeat;
+ background: linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.58)),
+             url('https://images.unsplash.com/photo-1581092580497-e0e323829a5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
  border-radius: 30px;
  padding: 9rem 4rem;
  text-align: center;
@@ -240,7 +245,6 @@
  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.12);
  display: none;
  margin-bottom: 3rem;
- opacity: 0.98;
  }
  .content.show { display: block; }
 
@@ -319,9 +323,8 @@
  footer {
  text-align: center;
  padding: 4.5rem 0 2rem;
- color: white;
+ color: var(--muted);
  font-size: 1.02rem;
- text-shadow: 0 1px 3px rgba(0,0,0,0.6);
  }
 
  @keyframes fadeIn {
@@ -434,7 +437,7 @@
    <input type="text" id="search-input" placeholder="Rechercher un terme biomédical... (ex: PDMS, ablation, capteur force)">
   </div>
 
-  <!-- PAGE D'ACCUEIL -->
+  <!-- PAGE D'ACCUEIL avec image de robot médical -->
   <div class="home-hero">
    <div class="home-content">
     <h1 class="home-title">Bienvenue sur Sofmedix</h1>
@@ -710,14 +713,14 @@
   // Recherche
   document.getElementById('search-input').addEventListener('input', function(e) {
    const term = e.target.value.toLowerCase();
-   document.querySelectorAll('.subsection, .intro-text, .fact, .note, h2, h3, p').forEach(el => {
-    const text = el.textContent || el.innerText;
-    el.style.display = text.toLowerCase().includes(term) ? '' : 'none';
+   document.querySelectorAll('.subsection, .intro-text, .fact, .note, h2, h3').forEach(el => {
+    el.style.display = el.textContent.toLowerCase().includes(term) ? '' : 'none';
    });
   });
  </script>
 </body>
 </html>
+
 
 
 
