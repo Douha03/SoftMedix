@@ -197,21 +197,24 @@ header {
   }
 }
 
-/* Bouton Imprimer */
-.print-btn {
-  padding: 0.9rem 2rem;
+ /* Bouton Imprimer */
+ .print-btn {
+  padding: 1.1rem 2.5rem;
   background: var(--primary);
   color: white;
   border: none;
-  border-radius: 14px;
-  font-weight: 600;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1.15rem;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-.print-btn:hover {
+  min-width: 200px;
+  letter-spacing: 0.3px;
+ }
+ .print-btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4);
-}
+ }
  /* ==================== SEARCH BAR ==================== */
  .search-container {
  text-align: center;
@@ -383,7 +386,7 @@ header {
  @media (max-width: 640px) {
  header { flex-direction: column; text-align: center; }
  .header-right { flex-direction: column; width: 100%; margin-top: 1rem; }
- #section-btn, .print-btn { width: 100%; max-width: 340px; }
+ #section-btn, .print-btn { width: 100%; max-width: 400px; padding: 1.2rem 2rem; font-size: 1.2rem; margin-bottom: 0.5rem; }
  .dropdown-menu { right: 50%; transform: translateX(50%); width: 92%; }
  .home-hero { padding: 6rem 2rem; }
  .home-title { font-size: 2.5rem; }
@@ -764,6 +767,7 @@ header {
  </script>
 </body>
 </html>
+
 
 
 
