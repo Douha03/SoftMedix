@@ -6,6 +6,7 @@
  <title>Sofmedix – Revue Biomédicale Interactive</title>
  <meta name="description" content="Explorez les avancées en capteurs intégrés pour robotique médicale souple – une revue biomédicale interactive pour une chirurgie mini-invasive plus sûre et précise." />
  <style>
+  
  :root {
  --primary: #2563eb;
  --accent: #3b82f6;
@@ -25,7 +26,11 @@
  min-height: 100vh;
  }
  .container { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; }
-
+/* Change uniquement la couleur des paragraphes de description dans les sous-sections en noir pur */
+.subsection-text p {
+    color: #000000 !important;   /* noir pur */
+    font-weight: 500;             /* optionnel : un peu plus lisible que du texte trop clair */
+}
 /* ==================== HEADER & MENU DÉROULANT – VERSION 2025 PRO ==================== */
 header {
   display: flex;
