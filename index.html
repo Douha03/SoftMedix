@@ -571,13 +571,7 @@ header {
     </div>
    </div>
 
-    <!-- 3. Capteurs biomédicaux -->
-    <div id="sensors" class="section">
-    <div class="section-title">
-      <h2>3. Capteurs : fonctions biomédicales</h2>
-      <p class="sub">Rôles en diagnostic et intervention</p>
-    </div>
-
+    <!-- Capteur Force / Pression -->
     <div id="sensors-force" class="subsection">
       <div class="subsection-text">
       <h3>Capteur Force / Pression</h3>
@@ -586,14 +580,16 @@ header {
       – Mesurer l'interaction outil-tissu et prévenir dommages durant interventions chirurgicales<br><br>
 
       <strong>Principe de fonctionnement :</strong><br>
-      – <em>Capacitifs</em> : variation de capacitance entre plaques conductrices sous déformation<br>
-      – <em>Piézorésistifs</em> : changement de résistance électrique sous contrainte mécanique<br>
-      – <em>FBG (fibres optiques)</em> : décalage longueur d'onde Bragg causé par déformation du réseau périodique
+      – <em>Capteurs capacitifs intégrés</em> : électrodes conductrices séparées par élastomère déformable<br>
+      – <em>Variation de capacitance</em> : compression du diélectrique modifie distance inter-électrodes<br>
+      – <em>Application cathéters/pinces</em> : détection force appliquée sur tissus en temps réel<br>
+      – <em>Fibres optiques FBG</em> : décalage longueur d'onde Bragg proportionnel à la déformation
       </p>
       </div>
       <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurforce.png" alt="Capteur force">
     </div>
 
+    <!-- Capteur Tactile (Palpation) -->
     <div id="sensors-tactile" class="subsection">
       <div class="subsection-text">
       <h3>Capteur Tactile (Palpation)</h3>
@@ -602,14 +598,16 @@ header {
       – Évaluer rigidité tissulaire et détecter anomalies par palpation mini-invasive<br><br>
 
       <strong>Principe de fonctionnement :</strong><br>
-      – <em>Micro-pyramides</em> : structures en relief concentrant contraintes pour amplifier sensibilité<br>
-      – <em>Films PVDF</em> : génération charge électrique par effet piézoélectrique sous pression<br>
-      – <em>Analyse vibratoire</em> : caractérisation fréquentielle des vibrations transmises à travers tissus
+      – <em>Micro-pyramides en surface</em> : structures en relief concentrant contraintes mécaniques<br>
+      – <em>Détection différentielle</em> : comparaison rigidité entre zones (normal/dur/mou)<br>
+      – <em>Analyse temporelle</em> : graphes force vs temps révélant propriétés viscoélastiques tissulaires<br>
+      – <em>Films PVDF piézoélectriques</em> : génération charge électrique sous pression pour cartographie
       </p>
       </div>
       <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/tactile.png" alt="Capteur tactile">
     </div>
 
+    <!-- Capteur Température -->
     <div id="sensors-temperature" class="subsection">
       <div class="subsection-text">
       <h3>Capteur Température</h3>
@@ -618,14 +616,16 @@ header {
       – Surveiller procédures thermiques (ablation) et cartographier variations physiologiques internes<br><br>
 
       <strong>Principe de fonctionnement :</strong><br>
-      – <em>Thermocouples</em> : génération tension thermoélectrique entre deux métaux différents<br>
-      – <em>Thermistances</em> : variation résistance électrique dans semi-conducteurs avec température<br>
-      – Conversion rapide variations thermiques en signaux électriques proportionnels
+      – <em>Thermocouples distribués</em> : multiples jonctions métalliques le long d'un cathéter flexible<br>
+      – <em>Mesure différentielle</em> : tension thermoélectrique proportionnelle au gradient thermique<br>
+      – <em>Cartographie spatiotemporelle</em> : graphes température vs distance révélant zones d'ablation<br>
+      – <em>Thermistances NTC/PTC</em> : variation rapide de résistance pour monitoring temps réel
       </p>
       </div>
       <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurtemperature.png" alt="Capteur température">
     </div>
 
+    <!-- Capteur Impédance bioélectrique -->
     <div id="sensors-impedance" class="subsection">
       <div class="subsection-text">
       <h3>Capteur Impédance bioélectrique</h3>
@@ -634,14 +634,16 @@ header {
       – Distinguer types de tissus (sains, pathologiques) par propriétés électriques locales<br><br>
 
       <strong>Principe de fonctionnement :</strong><br>
-      – Application courant alternatif basse fréquence via électrodes sur tissu<br>
-      – Mesure impédance complexe (résistance + réactance) variant selon composition tissulaire<br>
-      – Analyse spectrale multi-fréquences révélant propriétés diélectriques spécifiques
+      – <em>Injection courant alternatif</em> : application signal basse fréquence via électrodes de contact<br>
+      – <em>Mesure impédance complexe</em> : détection résistance et réactance variant selon composition tissulaire<br>
+      – <em>Analyse spectrale multi-fréquences</em> : balayage fréquentiel révélant propriétés diélectriques<br>
+      – <em>Cartographie tissulaire</em> : différenciation graisses/muscles/tumeurs par signature électrique
       </p>
       </div>
       <img src="https://www.mdpi.com/sensors/sensors-24-02198/article_deploy/html/images/sensors-24-02198-g001.png" alt="Impédance">
     </div>
 
+    <!-- Capteur Localisation / Tracking -->
     <div id="sensors-localisation" class="subsection">
       <div class="subsection-text">
       <h3>Capteur Localisation / Tracking</h3>
@@ -650,14 +652,16 @@ header {
       – Suivre position 3D des instruments dans corps pour navigation guidée sans visibilité directe<br><br>
 
       <strong>Principe de fonctionnement :</strong><br>
-      – <em>Systèmes magnétiques</em> : détection champs magnétiques générés par capteurs embarqués<br>
-      – <em>Fibres optiques FBG</em> : mesure courbure distribuée par déformation réseau Bragg<br>
-      – <em>Fusion sensorielle</em> : combinaison IMU et capteurs forme pour triangulation spatiale temps réel
+      – <em>Capteurs magnétiques embarqués</em> : bobines détectant champs magnétiques référencés externes<br>
+      – <em>Fibres optiques FBG distribuées</em> : mesure courbure par déformation réseau de Bragg<br>
+      – <em>Reconstruction 3D</em> : triangulation position/orientation par fusion multi-capteurs<br>
+      – <em>Superposition imagerie</em> : recalage temps réel sur modèles anatomiques préopératoires
       </p>
       </div>
       <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurrobotics.png" alt="Localisation">
     </div>
 
+    <!-- Capteur Électrophysiologie -->
     <div id="sensors-electrophysiologie" class="subsection">
       <div class="subsection-text">
       <h3>Capteur Électrophysiologie</h3>
@@ -666,14 +670,16 @@ header {
       – Enregistrer activité électrique cardiaque et nerveuse pour diagnostic et cartographie pathologies<br><br>
 
       <strong>Principe de fonctionnement :</strong><br>
-      – Électrodes souples en contact direct détectant potentiels d'action cellulaires (μV-mV)<br>
-      – Matériaux faible impédance (IrOx, PEDOT:PSS) pour enregistrements haute fidélité<br>
-      – Amplification différentielle et filtrage pour isolation signaux bioélectriques
+      – <em>Électrodes souples conformables</em> : contact intime avec tissus cardiaques/nerveux<br>
+      – <em>Matériaux faible impédance</em> : IrOx, PEDOT:PSS pour détection potentiels μV-mV<br>
+      – <em>Acquisition multicanale</em> : enregistrement simultané de multiples sites anatomiques<br>
+      – <em>Traitement du signal</em> : amplification différentielle et filtrage pour isolation signaux bioélectriques
       </p>
       </div>
       <img src="https://www.researchgate.net/publication/358153485/figure/fig4/AS:1117568811188228@1643460576762/Electrocardiogram-ECG-monitoring-sensing-robot-with-LIO-a-Schematic-of-the-equipped.png" alt="Électrophysiologie">
     </div>
 
+    <!-- Capteur mécanique / déformation -->
     <div id="sensors-mecanique" class="subsection">
       <div class="subsection-text">
       <h3>Capteur mécanique / déformation</h3>
@@ -683,14 +689,12 @@ header {
 
       <strong>Principe de fonctionnement :</strong><br>
       – <em>Jauges résistives</em> : variation résistance proportionnelle à élongation/compression<br>
-      – <em>Circuits serpentins</em> : motifs géométriques permettant grandes déformations sans rupture<br>
-      – <em>Fibres FBG</em> : mesure distribution déformation par décalage spectral transformé en coordonnées spatiales
+      – <em>Modèle mécanique équivalent</em> : système masse-ressort-amortisseur (Cp, Kp, M, C)<br>
+      – <em>Forces d'actionnement</em> : mesure forces perturbations et réaction du système<br>
+      – <em>Reconstruction géométrique</em> : intégration déformations locales pour reconstituer forme globale 3D
       </p>
       </div>
       <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Schema-mecanique-equivalent-au-robot-comanipule-avec-le-capteur-situe-sous-la-table-en.png" alt="Mécanique">
-    </div>
-
-    <div class="fact">L'intégration multimodale pourrait réduire les temps opératoires de 20-30 %, réduisant anesthésie et risques.</div>
     </div>
 
    <!-- 4. Matériaux -->
