@@ -571,24 +571,29 @@ header {
     </div>
    </div>
 
-    <!-- Capteur Force / Pression -->
-    <div id="sensors-force" class="subsection">
-      <div class="subsection-text">
-      <h3>Capteur Force / Pression</h3>
-      <p>
-      <strong>Rôle :</strong><br>
-      – Mesurer l'interaction outil-tissu et prévenir dommages durant interventions chirurgicales<br><br>
-
-      <strong>Principe de fonctionnement :</strong><br>
-      – <em>Capteurs capacitifs</em> : variation de capacitance entre électrodes sous déformation<br>
-      – <em>Fibres optiques FBG</em> : décalage longueur d'onde proportionnel à la compression<br>
-      – Application sur cathéters et pinces pour mesure forces en temps réel
-      </p>
+    <!-- 3. Capteurs biomédicaux -->
+    <div id="sensors" class="section">
+      <div class="section-title">
+        <h2>3. Capteurs : fonctions biomédicales</h2>
+        <p class="sub">Rôles en diagnostic et intervention</p>
       </div>
-      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurforce.png" alt="Capteur force">
-    </div>
 
-      <!-- Capteur Tactile (Palpation) -->
+      <div id="sensors-force" class="subsection">
+        <div class="subsection-text">
+        <h3>Capteur Force / Pression</h3>
+        <p>
+        <strong>Rôle :</strong><br>
+        – Mesurer l'interaction outil-tissu et prévenir dommages durant interventions chirurgicales<br><br>
+
+        <strong>Principe de fonctionnement :</strong><br>
+        – <em>Capteurs capacitifs</em> : variation de capacitance entre électrodes sous déformation<br>
+        – <em>Fibres optiques FBG</em> : décalage longueur d'onde proportionnel à la compression<br>
+        – Application sur cathéters et pinces pour mesure forces en temps réel
+        </p>
+        </div>
+        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurforce.png" alt="Capteur force">
+      </div>
+
       <div id="sensors-tactile" class="subsection">
         <div class="subsection-text">
         <h3>Capteur Tactile (Palpation)</h3>
@@ -605,7 +610,6 @@ header {
         <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/tactile.png" alt="Capteur tactile">
       </div>
 
-      <!-- Capteur Température -->
       <div id="sensors-temperature" class="subsection">
         <div class="subsection-text">
         <h3>Capteur Température</h3>
@@ -622,7 +626,6 @@ header {
         <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurtemperature.png" alt="Capteur température">
       </div>
 
-      <!-- Capteur Impédance bioélectrique -->
       <div id="sensors-impedance" class="subsection">
         <div class="subsection-text">
         <h3>Capteur Impédance bioélectrique</h3>
@@ -631,15 +634,14 @@ header {
         – Distinguer types de tissus (sains, pathologiques) par propriétés électriques locales<br><br>
 
         <strong>Principe de fonctionnement :</strong><br>
-        – <em>Injection courant alternatif</em> : application signal via électrodes de contact<br>
-        – <em>Analyse spectrale multi-fréquences</em> : balayage révélant propriétés diélectriques<br>
-        – Différenciation graisses/muscles/tumeurs par signature électrique
+        – <em>Configuration 4 électrodes</em> : injection courant I via électrodes I₁-V₀, mesure tension V₂-V₁<br>
+        – <em>Calcul impédance Z = (V₂-V₁)/I</em> : mesure différentielle éliminant impédances de contact<br>
+        – Sonde EIS (Spectroscopie d'Impédance Électrochimique) pour caractérisation tissulaire
         </p>
         </div>
         <img src="https://www.mdpi.com/sensors/sensors-24-02198/article_deploy/html/images/sensors-24-02198-g001.png" alt="Impédance">
       </div>
 
-      <!-- Capteur Localisation / Tracking -->
       <div id="sensors-localisation" class="subsection">
         <div class="subsection-text">
         <h3>Capteur Localisation / Tracking</h3>
@@ -656,7 +658,6 @@ header {
         <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurrobotics.png" alt="Localisation">
       </div>
 
-      <!-- Capteur Électrophysiologie -->
       <div id="sensors-electrophysiologie" class="subsection">
         <div class="subsection-text">
         <h3>Capteur Électrophysiologie</h3>
@@ -673,7 +674,6 @@ header {
         <img src="https://www.researchgate.net/publication/358153485/figure/fig4/AS:1117568811188228@1643460576762/Electrocardiogram-ECG-monitoring-sensing-robot-with-LIO-a-Schematic-of-the-equipped.png" alt="Électrophysiologie">
       </div>
 
-      <!-- Capteur mécanique / déformation -->
       <div id="sensors-mecanique" class="subsection">
         <div class="subsection-text">
         <h3>Capteur mécanique / déformation</h3>
@@ -689,6 +689,9 @@ header {
         </div>
         <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Schema-mecanique-equivalent-au-robot-comanipule-avec-le-capteur-situe-sous-la-table-en.png" alt="Mécanique">
       </div>
+
+      <div class="fact">L'intégration multimodale pourrait réduire les temps opératoires de 20-30 %, réduisant anesthésie et risques.</div>
+    </div>
 
    <!-- 4. Matériaux -->
    <div id="materials" class="section">
