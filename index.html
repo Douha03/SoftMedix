@@ -66,6 +66,45 @@ header {
   font-size: 32px;
 }
 
+/* Boutons de navigation entre sections */
+.section-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 2px solid var(--border);
+}
+.nav-btn {
+  padding: 1rem 2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.nav-btn:hover {
+  background: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+.nav-btn:disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.nav-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .site-title { font-size: 2rem; color: #1e40af; font-weight: 800; }
 .subtitle { color: var(--muted); font-size: 1.1rem; margin-top: 0.3rem; }
 
@@ -486,6 +525,7 @@ header {
    </div>
   </header>
 
+
   <!-- BARRE DE RECHERCHE -->
   <div class="search-container">
    <input type="text" id="search-input" placeholder="Rechercher un terme biomédical">
@@ -505,370 +545,428 @@ header {
   <!-- TOUT LE CONTENU -->
   <main class="content" id="main-content">
 
-   <!-- 1. Introduction -->
-   <div id="intro" class="section">
-    <div class="section-title">
-     <h2>1. Introduction </h2>
-     <p class="sub">Soft Robotics</p>
-    </div>
-    <p class="intro-text">La soft robotics révolutionne la médecine en offrant des robots souples capables de se faufiler dans des espaces anatomiques étroits et complexes, impossibles d'accès pour les dispositifs rigides. Cette flexibilité inédite permet d'envisager des interventions moins invasives et plus précises. Cependant, ces robots restent confrontés au défi de percevoir avec exactitude les forces et l'environnement interne. L'intégration de capteurs miniaturisés répond à cette limite, améliorant la sécurité, la précision et le contrôle en temps réel.</p>
-    <div class="fact">Fait intéressant : Les robots comme da Vinci intègrent déjà des capteurs, mais les versions souples pourraient cibler des organes inaccessibles (ex : tractus gastro-intestinal) pour des diagnostics précoces de cancers.</div>
-   </div>
-
-   <!-- 2. Robots médicaux souples -->
-   <div id="robots" class="section">
-    <div class="section-title">
-     <h2>2. Aperçu des robots médicaux souples</h2>
-     <p class="sub">Applications en chirurgie et diagnostic</p>
-    </div>
-
-    <div id="robots-endoscopes" class="subsection">
-     <div class="subsection-text">
-      <h3>Endoscopes souples</h3>
-      <p>
-      • Utilisés pour naviguer dans des cavités internes tout en préservant la vision.<br>
-      • Les capteurs doivent être transparents ou placés autour de la caméra pour ne pas obstruer l'image.<br>
-      • Intégrations citées dans l'article :<br>
-      &nbsp;&nbsp;– Fibres optiques FBG enroulées autour du tube<br>
-      &nbsp;&nbsp;– Micro-capteurs capacitifs transparents sur l'embout<br>
-      • Défi principal : intégrer des capteurs sans rigidifier le tube ni réduire l'angulation.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/endo.png" alt="Endoscopes">
-    </div>
-
-    <div id="robots-catheters" class="subsection">
-     <div class="subsection-text">
-      <h3>Cathéters intelligents</h3>
-      <p>
-      • Structures très fines nécessitant des capteurs ultra-miniatures.<br>
-      • Capteurs utilisés dans l'article :<br>
-      &nbsp;&nbsp;– Pression<br>
-      &nbsp;&nbsp;– Force axiale<br>
-      &nbsp;&nbsp;– Capteurs d'impédance pour différencier les tissus<br>
-      • Problème majeur : maintenir la flexibilité tout en intégrant plusieurs couches (électrodes, polymères, conducteurs).<br>
-      • Risque souligné : augmentation de rigidité → danger de perforation vasculaire.
-      </p>
-
-
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/cather.png" alt="Cathéters">
-    </div>
-
-    <div id="robots-ingestibles" class="subsection">
-     <div class="subsection-text">
-      <h3>Dispositifs ingérables (capsules)</h3>
-      <p>
-      • Plates-formes miniaturisées traversant le tube digestif pour diagnostic et mesure interne.<br>
-      • Capteurs les plus courants dans l'article :<br>
-      &nbsp;&nbsp;– Température pour suivi physiologique<br>
-      &nbsp;&nbsp;– Bio-impédance pour caractérisation tissulaire<br>
-      &nbsp;&nbsp;– Localisation magnétique ou optique pour suivi de trajectoire<br>
-      • Défi : énergie limitée, communication sans fil difficile et encapsulation complète pour résister à l'environnement digestif.
-      </p>
-
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/capsule.png" alt="Capsules ingérables">
-    </div>
-   </div>
-
-    <!-- 3. Capteurs biomédicaux -->
-    <div id="sensors" class="section">
+    <!-- 1. Introduction -->
+    <div id="intro" class="section">
       <div class="section-title">
-        <h2>3. Capteurs : fonctions biomédicales</h2>
-        <p class="sub">Rôles en diagnostic et intervention</p>
+      <h2>1. Introduction </h2>
+      <p class="sub">Soft Robotics</p>
+      </div>
+      <p class="intro-text">La soft robotics révolutionne la médecine en offrant des robots souples capables de se faufiler dans des espaces anatomiques étroits et complexes, impossibles d'accès pour les dispositifs rigides. Cette flexibilité inédite permet d'envisager des interventions moins invasives et plus précises. Cependant, ces robots restent confrontés au défi de percevoir avec exactitude les forces et l'environnement interne. L'intégration de capteurs miniaturisés répond à cette limite, améliorant la sécurité, la précision et le contrôle en temps réel.</p>
+      <div class="fact">Fait intéressant : Les robots comme da Vinci intègrent déjà des capteurs, mais les versions souples pourraient cibler des organes inaccessibles (ex : tractus gastro-intestinal) pour des diagnostics précoces de cancers.</div>
+      
+      <div class="section-navigation">
+      <button class="nav-btn" onclick="navigateSection('prev')" disabled>
+        ← Précédent
+      </button>
+      <button class="nav-btn" onclick="navigateSection('next')">
+        Suivant →
+      </button>
+      </div>
+    </div>
+
+    <!-- 2. Robots médicaux souples -->
+    <div id="robots" class="section">
+      <div class="section-title">
+      <h2>2. Aperçu des robots médicaux souples</h2>
+      <p class="sub">Applications en chirurgie et diagnostic</p>
       </div>
 
-      <div id="sensors-force" class="subsection">
-        <div class="subsection-text">
-        <h3>Capteur Force / Pression</h3>
+      <div id="robots-endoscopes" class="subsection">
+      <div class="subsection-text">
+        <h3>Endoscopes souples</h3>
         <p>
-        <strong>Rôle :</strong><br>
-        – Mesurer l'interaction outil-tissu et prévenir dommages durant interventions chirurgicales<br><br>
-
-        <strong>Principe de fonctionnement :</strong><br>
-        – <em>Capteurs capacitifs</em> : variation de capacitance entre électrodes sous déformation<br>
-        – <em>Fibres optiques FBG</em> : décalage longueur d'onde proportionnel à la compression<br>
-        – Application sur cathéters et pinces pour mesure forces en temps réel
+        • Utilisés pour naviguer dans des cavités internes tout en préservant la vision.<br>
+        • Les capteurs doivent être transparents ou placés autour de la caméra pour ne pas obstruer l'image.<br>
+        • Intégrations citées dans l'article :<br>
+        &nbsp;&nbsp;– Fibres optiques FBG enroulées autour du tube<br>
+        &nbsp;&nbsp;– Micro-capteurs capacitifs transparents sur l'embout<br>
+        • Défi principal : intégrer des capteurs sans rigidifier le tube ni réduire l'angulation.
         </p>
-        </div>
-        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurforce.png" alt="Capteur force">
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/endo.png" alt="Endoscopes">
       </div>
 
-      <div id="sensors-tactile" class="subsection">
-        <div class="subsection-text">
-        <h3>Capteur Tactile (Palpation)</h3>
+      <div id="robots-catheters" class="subsection">
+      <div class="subsection-text">
+        <h3>Cathéters intelligents</h3>
         <p>
-        <strong>Rôle :</strong><br>
-        – Évaluer rigidité tissulaire et détecter anomalies par palpation mini-invasive<br><br>
-
-        <strong>Principe de fonctionnement :</strong><br>
-        – <em>Micro-pyramides</em> : structures en relief concentrant contraintes mécaniques<br>
-        – <em>Analyse temporelle</em> : graphes force vs temps révélant propriétés viscoélastiques<br>
-        – Détection différentielle entre zones normales, dures et molles
+        • Structures très fines nécessitant des capteurs ultra-miniatures.<br>
+        • Capteurs utilisés dans l'article :<br>
+        &nbsp;&nbsp;– Pression<br>
+        &nbsp;&nbsp;– Force axiale<br>
+        &nbsp;&nbsp;– Capteurs d'impédance pour différencier les tissus<br>
+        • Problème majeur : maintenir la flexibilité tout en intégrant plusieurs couches (électrodes, polymères, conducteurs).<br>
+        • Risque souligné : augmentation de rigidité → danger de perforation vasculaire.
         </p>
-        </div>
-        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/tactile.png" alt="Capteur tactile">
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/cather.png" alt="Cathéters">
       </div>
 
-      <div id="sensors-temperature" class="subsection">
-        <div class="subsection-text">
-        <h3>Capteur Température</h3>
+      <div id="robots-ingestibles" class="subsection">
+      <div class="subsection-text">
+        <h3>Dispositifs ingérables (capsules)</h3>
         <p>
-        <strong>Rôle :</strong><br>
-        – Surveiller procédures thermiques (ablation) et cartographier variations physiologiques<br><br>
-
-        <strong>Principe de fonctionnement :</strong><br>
-        – <em>Thermocouples distribués</em> : jonctions métalliques le long d'un cathéter flexible<br>
-        – <em>Cartographie spatiotemporelle</em> : graphes température vs distance<br>
-        – Mesure différentielle pour monitoring zones d'ablation en temps réel
+        • Plates-formes miniaturisées traversant le tube digestif pour diagnostic et mesure interne.<br>
+        • Capteurs les plus courants dans l'article :<br>
+        &nbsp;&nbsp;– Température pour suivi physiologique<br>
+        &nbsp;&nbsp;– Bio-impédance pour caractérisation tissulaire<br>
+        &nbsp;&nbsp;– Localisation magnétique ou optique pour suivi de trajectoire<br>
+        • Défi : énergie limitée, communication sans fil difficile et encapsulation complète pour résister à l'environnement digestif.
         </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/capsule.png" alt="Capsules ingérables">
+      </div>
+      
+      <div class="section-navigation">
+      <button class="nav-btn" onclick="navigateSection('prev')">
+        ← Précédent
+      </button>
+      <button class="nav-btn" onclick="navigateSection('next')">
+        Suivant →
+      </button>
+      </div>
+    </div>
+
+      <!-- 3. Capteurs biomédicaux -->
+      <div id="sensors" class="section">
+        <div class="section-title">
+          <h2>3. Capteurs : fonctions biomédicales</h2>
+          <p class="sub">Rôles en diagnostic et intervention</p>
         </div>
-        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurtemperature.png" alt="Capteur température">
+
+        <div id="sensors-force" class="subsection">
+          <div class="subsection-text">
+          <h3>Capteur Force / Pression</h3>
+          <p>
+          <strong>Rôle :</strong><br>
+          – Mesurer l'interaction outil-tissu et prévenir dommages durant interventions chirurgicales<br><br>
+
+          <strong>Principe de fonctionnement :</strong><br>
+          – <em>Capteurs capacitifs</em> : variation de capacitance entre électrodes sous déformation<br>
+          – <em>Fibres optiques FBG</em> : décalage longueur d'onde proportionnel à la compression<br>
+          – Application sur cathéters et pinces pour mesure forces en temps réel
+          </p>
+          </div>
+          <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurforce.png" alt="Capteur force">
+        </div>
+
+        <div id="sensors-tactile" class="subsection">
+          <div class="subsection-text">
+          <h3>Capteur Tactile (Palpation)</h3>
+          <p>
+          <strong>Rôle :</strong><br>
+          – Évaluer rigidité tissulaire et détecter anomalies par palpation mini-invasive<br><br>
+
+          <strong>Principe de fonctionnement :</strong><br>
+          – <em>Micro-pyramides</em> : structures en relief concentrant contraintes mécaniques<br>
+          – <em>Analyse temporelle</em> : graphes force vs temps révélant propriétés viscoélastiques<br>
+          – Détection différentielle entre zones normales, dures et molles
+          </p>
+          </div>
+          <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/tactile.png" alt="Capteur tactile">
+        </div>
+
+        <div id="sensors-temperature" class="subsection">
+          <div class="subsection-text">
+          <h3>Capteur Température</h3>
+          <p>
+          <strong>Rôle :</strong><br>
+          – Surveiller procédures thermiques (ablation) et cartographier variations physiologiques<br><br>
+
+          <strong>Principe de fonctionnement :</strong><br>
+          – <em>Thermocouples distribués</em> : jonctions métalliques le long d'un cathéter flexible<br>
+          – <em>Cartographie spatiotemporelle</em> : graphes température vs distance<br>
+          – Mesure différentielle pour monitoring zones d'ablation en temps réel
+          </p>
+          </div>
+          <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurtemperature.png" alt="Capteur température">
+        </div>
+
+        <div id="sensors-impedance" class="subsection">
+          <div class="subsection-text">
+          <h3>Capteur Impédance bioélectrique</h3>
+          <p>
+          <strong>Rôle :</strong><br>
+          – Distinguer types de tissus (sains, pathologiques) par propriétés électriques locales<br><br>
+
+          <strong>Principe de fonctionnement :</strong><br>
+          – <em>Configuration 4 électrodes</em> : injection courant I via électrodes I₁-V₀, mesure tension V₂-V₁<br>
+          – <em>Calcul impédance Z = (V₂-V₁)/I</em> : mesure différentielle éliminant impédances de contact<br>
+          – Sonde EIS (Spectroscopie d'Impédance Électrochimique) pour caractérisation tissulaire
+          </p>
+          </div>
+          <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/imp.png" alt="Impédance">
+        </div>
+
+        <div id="sensors-localisation" class="subsection">
+          <div class="subsection-text">
+          <h3>Capteur Localisation / Tracking</h3>
+          <p>
+          <strong>Rôle :</strong><br>
+          – Suivre position 3D des instruments dans corps pour navigation guidée<br><br>
+
+          <strong>Principe de fonctionnement :</strong><br>
+          – <em>Capteurs magnétiques</em> : bobines détectant champs magnétiques externes<br>
+          – <em>Fibres optiques FBG</em> : mesure courbure par déformation réseau de Bragg<br>
+          – Reconstruction 3D par triangulation et superposition sur imagerie préopératoire
+          </p>
+          </div>
+          <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurrobotics.png" alt="Localisation">
+        </div>
+
+        <div id="sensors-electrophysiologie" class="subsection">
+          <div class="subsection-text">
+          <h3>Capteur Électrophysiologie</h3>
+          <p>
+          <strong>Rôle :</strong><br>
+          – Enregistrer activité électrique cardiaque et nerveuse pour diagnostic<br><br>
+
+          <strong>Principe de fonctionnement :</strong><br>
+          – <em>Électrodes souples</em> : contact intime avec tissus pour détection potentiels μV-mV<br>
+          – <em>Acquisition multicanale</em> : enregistrement simultané multiples sites<br>
+          – Amplification différentielle et filtrage pour isolation signaux bioélectriques
+          </p>
+          </div>
+          <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/electro.png" alt="Électrophysiologie">
+        </div>
+
+        <div id="sensors-mecanique" class="subsection">
+          <div class="subsection-text">
+          <h3>Capteur mécanique / déformation</h3>
+          <p>
+          <strong>Rôle :</strong><br>
+          – Reconstruire forme 3D du robot souple en temps réel pour contrôle précis<br><br>
+
+          <strong>Principe de fonctionnement :</strong><br>
+          – <em>Jauges résistives</em> : variation résistance proportionnelle à élongation<br>
+          – <em>Modèle mécanique</em> : système masse-ressort-amortisseur (Cp, Kp, M, C)<br>
+          – Reconstruction géométrique par intégration des déformations locales
+          </p>
+          </div>
+          <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Schema-mecanique-equivalent-au-robot-comanipule-avec-le-capteur-situe-sous-la-table-en.png" alt="Mécanique">
+        </div>
+
+        <div class="fact">L'intégration multimodale pourrait réduire les temps opératoires de 20-30 %, réduisant anesthésie et risques.</div>
+        
+        <div class="section-navigation">
+        <button class="nav-btn" onclick="navigateSection('prev')">
+          ← Précédent
+        </button>
+        <button class="nav-btn" onclick="navigateSection('next')">
+          Suivant →
+        </button>
+        </div>
       </div>
 
-      <div id="sensors-impedance" class="subsection">
-        <div class="subsection-text">
-        <h3>Capteur Impédance bioélectrique</h3>
+    <!-- 4. Matériaux -->
+    <div id="materials" class="section">
+      <div class="section-title">
+      <h2>4. Matériaux biocompatibles</h2>
+      <p class="sub">Choix pour compatibilité tissulaire et performance</p>
+      </div>
+
+      <div id="materials-polymeres" class="subsection">
+      <div class="subsection-text">
+        <h3>Polymères souples (PDMS, Ecoflex, silicone)</h3>
         <p>
-        <strong>Rôle :</strong><br>
-        – Distinguer types de tissus (sains, pathologiques) par propriétés électriques locales<br><br>
-
-        <strong>Principe de fonctionnement :</strong><br>
-        – <em>Configuration 4 électrodes</em> : injection courant I via électrodes I₁-V₀, mesure tension V₂-V₁<br>
-        – <em>Calcul impédance Z = (V₂-V₁)/I</em> : mesure différentielle éliminant impédances de contact<br>
-        – Sonde EIS (Spectroscopie d'Impédance Électrochimique) pour caractérisation tissulaire
+        • Grande conformabilité et élasticité, adaptés aux géométries courbes des endoscopes et cathéters.<br>
+        • Forte biocompatibilité et inertie chimique, limitent les réactions tissulaires indésirables.<br>
+        • Utilisés comme substrat d'encapsulation pour protéger capteurs et interconnexions.<br>
+        • Limite à surveiller : perméabilité aux liquides et potentiel de délamination sous flexions répétées.
         </p>
-        </div>
-        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/imp.png" alt="Impédance">
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/poly.png" alt="Polymères">
       </div>
 
-      <div id="sensors-localisation" class="subsection">
-        <div class="subsection-text">
-        <h3>Capteur Localisation / Tracking</h3>
+      <div id="materials-nano" class="subsection">
+      <div class="subsection-text">
+        <h3>Nano-matériaux (graphène, CNT, AgNW)</h3>
         <p>
-        <strong>Rôle :</strong><br>
-        – Suivre position 3D des instruments dans corps pour navigation guidée<br><br>
-
-        <strong>Principe de fonctionnement :</strong><br>
-        – <em>Capteurs magnétiques</em> : bobines détectant champs magnétiques externes<br>
-        – <em>Fibres optiques FBG</em> : mesure courbure par déformation réseau de Bragg<br>
-        – Reconstruction 3D par triangulation et superposition sur imagerie préopératoire
+        • Offrent conductivité élevée, grande sensibilité et bonne stretchabilité pour capteurs flexibles.<br>
+        • Certains présentent une transparence optique utile pour intégration sur embouts d'endoscopes.<br>
+        • Permettent la fabrication d'électrodes et traces conductrices ultra-minces minimisant l'effet de rigidification.<br>
+        • Attention : encapsulation nécessaire pour éviter corrosion et migration de nanoparticules en milieu biologique.
         </p>
-        </div>
-        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Capteurrobotics.png" alt="Localisation">
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/graphene.png" alt="Nano-matériaux">
       </div>
 
-      <div id="sensors-electrophysiologie" class="subsection">
-        <div class="subsection-text">
-        <h3>Capteur Électrophysiologie</h3>
+      <div id="materials-semi" class="subsection">
+      <div class="subsection-text">
+        <h3>Semi-conducteurs flexibles (Si nanomembranes, IrOx)</h3>
         <p>
-        <strong>Rôle :</strong><br>
-        – Enregistrer activité électrique cardiaque et nerveuse pour diagnostic<br><br>
-
-        <strong>Principe de fonctionnement :</strong><br>
-        – <em>Électrodes souples</em> : contact intime avec tissus pour détection potentiels μV-mV<br>
-        – <em>Acquisition multicanale</em> : enregistrement simultané multiples sites<br>
-        – Amplification différentielle et filtrage pour isolation signaux bioélectriques
+        • Nanomembranes de silicium et films métalliques comme IrOx offrent stabilité électrique et faible impédance pour enregistrements.<br>
+        • Conviennent pour micro-électrodes haute densité et capteurs MEMS miniaturisés intégrés sur films souples.<br>
+        • Avantage : robustesse des signaux en présence de biofluides et haute fiabilité électrique.<br>
+        • Inconvénient : exigent procédés d'intégration soignés pour préserver flexibilité et éviter rupture.
         </p>
-        </div>
-        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/electro.png" alt="Électrophysiologie">
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/nanosi.png" alt="Semi-conducteurs">
+      </div>
+      
+      <div class="section-navigation">
+      <button class="nav-btn" onclick="navigateSection('prev')">
+        ← Précédent
+      </button>
+      <button class="nav-btn" onclick="navigateSection('next')">
+        Suivant →
+      </button>
+      </div>
+    </div>
+
+    <!-- 5. Fabrication -->
+    <div id="fabrication" class="section">
+      <div class="section-title">
+      <h2>5. Fabrication & intégration</h2>
+      <p class="sub">Techniques avancées pour dispositifs souples</p>
       </div>
 
-      <div id="sensors-mecanique" class="subsection">
-        <div class="subsection-text">
-        <h3>Capteur mécanique / déformation</h3>
+      <div id="fabrication-micromachining" class="subsection">
+      <div class="subsection-text">
+        <h3>Micromachining</h3>
         <p>
-        <strong>Rôle :</strong><br>
-        – Reconstruire forme 3D du robot souple en temps réel pour contrôle précis<br><br>
-
-        <strong>Principe de fonctionnement :</strong><br>
-        – <em>Jauges résistives</em> : variation résistance proportionnelle à élongation<br>
-        – <em>Modèle mécanique</em> : système masse-ressort-amortisseur (Cp, Kp, M, C)<br>
-        – Reconstruction géométrique par intégration des déformations locales
+        • Photolithographie, DRIE, LPCVD et PECVD pour membranes et électrodes ultra-minces.<br>
+        • Permet de fabriquer capteurs de pression, de force et micro-électrodes très précis.<br>
+        • Compatible avec intégration sur structures souples via encapsulation.
         </p>
-        </div>
-        <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Schema-mecanique-equivalent-au-robot-comanipule-avec-le-capteur-situe-sous-la-table-en.png" alt="Mécanique">
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Nano.png" alt="Micromachining">
       </div>
 
-      <div class="fact">L'intégration multimodale pourrait réduire les temps opératoires de 20-30 %, réduisant anesthésie et risques.</div>
+      <div id="fabrication-transfer" class="subsection">
+      <div class="subsection-text">
+        <h3>Transfer printing (balloon, eau)</h3>
+        <p>
+        • Transfert de circuits ultraminces sur des surfaces courbes comme cathéters.<br>
+        • Méthodes ballon, eau ou élastomères utilisées pour coller des réseaux de capteurs.<br>
+        • Maintient flexibilité et réduit épaisseur totale.
+        </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/trensfert.png" alt="Transfer printing">
+      </div>
+
+      <div id="fabrication-3d" class="subsection">
+      <div class="subsection-text">
+        <h3>Structures 3D Kirigami / Origami</h3>
+        <p>
+        • Découpes et motifs géométriques permettant extensibilité extrême.<br>
+        • Évitent accumulation de contraintes dans zones de flexion.<br>
+        • Favorisent intégration de capteurs sur surfaces courbes et déformables.
+        </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/3d.png" alt="Kirigami">
+      </div>
+      
+      <div class="section-navigation">
+      <button class="nav-btn" onclick="navigateSection('prev')">
+        ← Précédent
+      </button>
+      <button class="nav-btn" onclick="navigateSection('next')">
+        Suivant →
+      </button>
+      </div>
     </div>
 
-   <!-- 4. Matériaux -->
-   <div id="materials" class="section">
-    <div class="section-title">
-     <h2>4. Matériaux biocompatibles</h2>
-     <p class="sub">Choix pour compatibilité tissulaire et performance</p>
+    <!-- 6. Défis -->
+    <div id="challenges" class="section">
+      <div class="section-title">
+      <h2>6. Défis biomédicaux</h2>
+      <p class="sub">Obstacles à la translation clinique</p>
+      </div>
+
+      <div id="challenges-miniaturisation" class="subsection">
+      <div class="subsection-text">
+        <h3>Miniaturisation extrême</h3>
+        <p>
+        • Intégrer capteurs, électrodes et interconnexions dans des robots <br>
+        &nbsp;&nbsp;dont l'épaisseur ne dépasse parfois que quelques millimètres.<br>
+        • Réduire taille sans perdre sensibilité ni précision de mesure.<br>
+        • Préserver flexibilité mécanique malgré l'ajout de couches fonctionnelles.<br>
+        • Défi critique pour cathéters, endoscopes et capsules miniaturisées.
+        </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/minatisat.png" alt="Miniaturisation">
+      </div>
+
+      <div id="challenges-robustesse" class="subsection">
+      <div class="subsection-text">
+        <h3>Robustesse en milieu humide</h3>
+        <p>
+        • Les biofluides peuvent corroder électrodes et conducteurs métalliques.<br>
+        • Risque de délamination des couches polymères sous flexion répétée.<br>
+        • Encapsulation doit rester hermétique tout en étant souple et extensible.<br>
+        • Condition essentielle pour fiabilité clinique à long terme.
+        </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/la_pille_de_corrosion.jpg" alt="Robustesse">
+      </div>
+
+      <div id="challenges-multimodalite" class="subsection">
+      <div class="subsection-text">
+        <h3>Multimodalité sans interférences</h3>
+        <p>
+        • Combiner force, pression, température, impédance et déformation sur un même dispositif.<br>
+        • Prévenir les interférences électriques et thermiques entre capteurs superposés.<br>
+        • Organiser couches fonctionnelles sans rigidifier le robot.<br>
+        • Objectif : obtenir une perception complète d'un environnement anatomique complexe.
+        </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/multi.png" alt="Multimodalité">
+      </div>
+
+      <div id="challenges-biocompatibilite" class="subsection">
+      <div class="subsection-text">
+        <h3>Biocompatibilité & communication sans fil</h3>
+        <p>
+        • Les matériaux doivent être stables, non toxiques et résistants aux contraintes tissulaires.<br>
+        • Encapsulation doit empêcher migration d'ions et corrosion interne.<br>
+        • Communication sans fil limitée par atténuation des ondes dans les tissus.<br>
+        • Besoin de solutions magnétiques ou ultrasonores pour transmission d'énergie et données.
+        </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/bio.jpg" alt="Comm sans fil">
+      </div>
+      
+      <div class="section-navigation">
+      <button class="nav-btn" onclick="navigateSection('prev')">
+        ← Précédent
+      </button>
+      <button class="nav-btn" onclick="navigateSection('next')">
+        Suivant →
+      </button>
+      </div>
     </div>
 
-    <div id="materials-polymeres" class="subsection">
-     <div class="subsection-text">
-      <h3>Polymères souples (PDMS, Ecoflex, silicone)</h3>
-      <p>
-      • Grande conformabilité et élasticité, adaptés aux géométries courbes des endoscopes et cathéters.<br>
-      • Forte biocompatibilité et inertie chimique, limitent les réactions tissulaires indésirables.<br>
-      • Utilisés comme substrat d'encapsulation pour protéger capteurs et interconnexions.<br>
-      • Limite à surveiller : perméabilité aux liquides et potentiel de délamination sous flexions répétées.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/poly.png" alt="Polymères">
+    <!-- 7. Perspectives -->
+    <div id="future" class="section">
+      <div class="section-title">
+      <h2>7. Perspectives en médecine</h2>
+      <p class="sub">Vers une robotique biomédicale avancée</p>
+      </div>
+
+      <div id="future-perspectives" class="subsection">
+      <div class="subsection-text">
+        <h3>Vers une robotique biomédicale avancée</h3>
+        <p>
+      En intégrant des capteurs miniaturisés, des matériaux à la fois biocompatibles et résistants, ainsi que l'intelligence artificielle pour un retour d'information en temps réel, les robots souples promettent une médecine plus précise et moins invasive. Ils peuvent explorer des zones anatomiques jusque-là inaccessibles, faciliter des diagnostics précoces et transformer radicalement les interventions médicales. À l'avenir, ces technologies pourraient permettre des chirurgies autonomes assistées par IA, des traitements personnalisés au niveau cellulaire, et une intégration fluide avec la télémédecine, offrant ainsi des soins à distance plus sûrs et plus efficaces.
+        </p>
+      </div>
+      <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/futur.png" alt="Futur">
+      </div>
+
+      <div class="fact">Intégration AR/VR pour formation chirurgicale et chirurgie à distance en temps réel.</div>
+      
+      <div class="section-navigation">
+      <button class="nav-btn" onclick="navigateSection('prev')">
+        ← Précédent
+      </button>
+      <button class="nav-btn" onclick="navigateSection('next')" disabled>
+        Suivant →
+      </button>
+      </div>
     </div>
 
-    <div id="materials-nano" class="subsection">
-     <div class="subsection-text">
-      <h3>Nano-matériaux (graphène, CNT, AgNW)</h3>
-      <p>
-      • Offrent conductivité élevée, grande sensibilité et bonne stretchabilité pour capteurs flexibles.<br>
-      • Certains présentent une transparence optique utile pour intégration sur embouts d'endoscopes.<br>
-      • Permettent la fabrication d'électrodes et traces conductrices ultra-minces minimisant l’effet de rigidification.<br>
-      • Attention : encapsulation nécessaire pour éviter corrosion et migration de nanoparticules en milieu biologique.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/graphene.png" alt="Nano-matériaux">
-    </div>
 
-    <div id="materials-semi" class="subsection">
-     <div class="subsection-text">
-      <h3>Semi-conducteurs flexibles (Si nanomembranes, IrOx)</h3>
-      <p>
-      • Nanomembranes de silicium et films métalliques comme IrOx offrent stabilité électrique et faible impédance pour enregistrements.<br>
-      • Conviennent pour micro-électrodes haute densité et capteurs MEMS miniaturisés intégrés sur films souples.<br>
-      • Avantage : robustesse des signaux en présence de biofluides et haute fiabilité électrique.<br>
-      • Inconvénient : exigent procédés d'intégration soignés pour préserver flexibilité et éviter rupture.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/nanosi.png" alt="Semi-conducteurs">
-    </div>
-   </div>
-
-   <!-- 5. Fabrication -->
-   <div id="fabrication" class="section">
-    <div class="section-title">
-     <h2>5. Fabrication & intégration</h2>
-     <p class="sub">Techniques avancées pour dispositifs souples</p>
-    </div>
-
-    <div id="fabrication-micromachining" class="subsection">
-     <div class="subsection-text">
-      <h3>Micromachining</h3>
-      <p>
-      • Photolithographie, DRIE, LPCVD et PECVD pour membranes et électrodes ultra-minces.<br>
-      • Permet de fabriquer capteurs de pression, de force et micro-électrodes très précis.<br>
-      • Compatible avec intégration sur structures souples via encapsulation.
-      </p>
-
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/Nano.png" alt="Micromachining">
-    </div>
-
-    <div id="fabrication-transfer" class="subsection">
-     <div class="subsection-text">
-      <h3>Transfer printing (balloon, eau)</h3>
-      <p>
-      • Transfert de circuits ultraminces sur des surfaces courbes comme cathéters.<br>
-      • Méthodes ballon, eau ou élastomères utilisées pour coller des réseaux de capteurs.<br>
-      • Maintient flexibilité et réduit épaisseur totale.
-      </p>
-
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/trensfert.png" alt="Transfer printing">
-    </div>
-
-    <div id="fabrication-3d" class="subsection">
-     <div class="subsection-text">
-      <h3>Structures 3D Kirigami / Origami</h3>
-      <p>
-      • Découpes et motifs géométriques permettant extensibilité extrême.<br>
-      • Évitent accumulation de contraintes dans zones de flexion.<br>
-      • Favorisent intégration de capteurs sur surfaces courbes et déformables.
-      </p>
-
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/3d.png" alt="Kirigami">
-    </div>
-   </div>
-
-   <!-- 6. Défis -->
-   <div id="challenges" class="section">
-    <div class="section-title">
-     <h2>6. Défis biomédicaux</h2>
-     <p class="sub">Obstacles à la translation clinique</p>
-    </div>
-
-    <div id="challenges-miniaturisation" class="subsection">
-     <div class="subsection-text">
-      <h3>Miniaturisation extrême</h3>
-      <p>
-      • Intégrer capteurs, électrodes et interconnexions dans des robots <br>
-      &nbsp;&nbsp;dont l’épaisseur ne dépasse parfois que quelques millimètres.<br>
-      • Réduire taille sans perdre sensibilité ni précision de mesure.<br>
-      • Préserver flexibilité mécanique malgré l’ajout de couches fonctionnelles.<br>
-      • Défi critique pour cathéters, endoscopes et capsules miniaturisées.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/minatisat.png" alt="Miniaturisation">
-    </div>
-
-    <div id="challenges-robustesse" class="subsection">
-     <div class="subsection-text">
-      <h3>Robustesse en milieu humide</h3>
-      <p>
-      • Les biofluides peuvent corroder électrodes et conducteurs métalliques.<br>
-      • Risque de délamination des couches polymères sous flexion répétée.<br>
-      • Encapsulation doit rester hermétique tout en étant souple et extensible.<br>
-      • Condition essentielle pour fiabilité clinique à long terme.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/la_pille_de_corrosion.jpg" alt="Robustesse">
-    </div>
-
-    <div id="challenges-multimodalite" class="subsection">
-     <div class="subsection-text">
-      <h3>Multimodalité sans interférences</h3>
-      <p>
-      • Combiner force, pression, température, impédance et déformation sur un même dispositif.<br>
-      • Prévenir les interférences électriques et thermiques entre capteurs superposés.<br>
-      • Organiser couches fonctionnelles sans rigidifier le robot.<br>
-      • Objectif : obtenir une perception complète d’un environnement anatomique complexe.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/multi.png" alt="Multimodalité">
-    </div>
-
-    <div id="challenges-biocompatibilite" class="subsection">
-     <div class="subsection-text">
-      <h3>Biocompatibilité & communication sans fil</h3>
-      <p>
-      • Les matériaux doivent être stables, non toxiques et résistants aux contraintes tissulaires.<br>
-      • Encapsulation doit empêcher migration d’ions et corrosion interne.<br>
-      • Communication sans fil limitée par atténuation des ondes dans les tissus.<br>
-      • Besoin de solutions magnétiques ou ultrasonores pour transmission d’énergie et données.
-      </p>
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/bio.jpg" alt="Comm sans fil">
-    </div>
-   </div>
-
-   <!-- 7. Perspectives -->
-   <div id="future" class="section">
-    <div class="section-title">
-     <h2>7. Perspectives en médecine</h2>
-     <p class="sub">Vers une robotique biomédicale avancée</p>
-    </div>
-
-    <div id="future-perspectives" class="subsection">
-     <div class="subsection-text">
-      <h3>Vers une robotique biomédicale avancée</h3>
-      <p>
-     En intégrant des capteurs miniaturisés, des matériaux à la fois biocompatibles et résistants, ainsi que l’intelligence artificielle pour un retour d’information en temps réel, les robots souples promettent une médecine plus précise et moins invasive. Ils peuvent explorer des zones anatomiques jusque-là inaccessibles, faciliter des diagnostics précoces et transformer radicalement les interventions médicales. À l’avenir, ces technologies pourraient permettre des chirurgies autonomes assistées par IA, des traitements personnalisés au niveau cellulaire, et une intégration fluide avec la télémédecine, offrant ainsi des soins à distance plus sûrs et plus efficaces.
-      </p>
-
-     </div>
-     <img src="https://raw.githubusercontent.com/Douha03/SoftMedix/main/assets/images/futur.png" alt="Futur">
-    </div>
-
-    <div class="fact">Intégration AR/VR pour formation chirurgicale et chirurgie à distance en temps réel.</div>
-   </div>
 
   </main>
 
@@ -899,6 +997,29 @@ header {
      document.getElementById(subId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 400);
    }
+  }
+
+
+    // Navigation entre sections
+  const sectionOrder = ['intro', 'robots', 'sensors', 'materials', 'fabrication', 'challenges', 'future'];
+
+  function navigateSection(direction) {
+    const currentSection = document.querySelector('.section[style*="display: block"]');
+    if (!currentSection) return;
+    
+    const currentId = currentSection.id;
+    const currentIndex = sectionOrder.indexOf(currentId);
+    
+    let nextIndex;
+    if (direction === 'next') {
+      nextIndex = currentIndex + 1;
+    } else {
+      nextIndex = currentIndex - 1;
+    }
+    
+    if (nextIndex >= 0 && nextIndex < sectionOrder.length) {
+      showSection(sectionOrder[nextIndex]);
+    }
   }
 
   // Recherche
